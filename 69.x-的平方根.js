@@ -14,9 +14,9 @@ var mySqrt = function (x) {
     return x;
   }
   let i = 0;
-  while (i * i < x) {
+  while (i * i <= x) {
     i++;
   }
-  return Math.abs(x - i * i) - Math.abs(x - (i - 1) - (i - 1)) >= 0 ? i - 1 : i;
+  return i - 1;
 };
 // @lc code=end
