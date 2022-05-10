@@ -18,10 +18,34 @@
  * @param {TreeNode} q
  * @return {boolean}
  */
-var isSameTree = function (p, q) {
+/* var isSameTree = function (p, q) {
+  // 递归解法
   if (p === null && q === null) return true;
   if (p == null || q == null) return false;
   if (p.val !== q.val) return false;
   return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+}; */
+
+var isSameTree = function (p, q) {
+  if (p === null && q === null) return true;
+  if (p == null || q == null) return false;
+
+  let queueP = [p];
+  let queueQ = [q];
+  while (queueQ.length && queueQ.length) {
+    const nodeP = queueP.pop();
+    const nodeQ = queueQ.pop();
+    if (nodeP == null && nodeQ == null) continue;
+    if (nodeP == null || nodeQ == null) return false;
+    if (nodeP.val == nodeQ.val) {
+      queueP.push(nodeP.left);
+      queueP.push(nodeP.right);
+      queueQ.push(nodeQ.left);
+      queueQ.push(nodeQ.right);
+    } else {
+      return false;
+    }
+  }
+  return queueP.length == queueQ.length;
 };
 // @lc code=end
