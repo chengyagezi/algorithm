@@ -17,7 +17,7 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
-var preorderTraversal = function (root) {
+/* var preorderTraversal = function (root) {
   // 递归解法
   let res = [];
   function travese(root) {
@@ -28,6 +28,21 @@ var preorderTraversal = function (root) {
     }
   }
   travese(root);
+  return res;
+}; */
+var preorderTraversal = function (root) {
+  // 迭代算法
+  let res = [];
+
+  let stack = [root];
+  while (stack.length) {
+    let tmp = stack.pop();
+    if (tmp !== null) {
+      res.push(tmp.val);
+      stack.push(tmp.right);
+      stack.push(tmp.left);
+    }
+  }
   return res;
 };
 // @lc code=end
